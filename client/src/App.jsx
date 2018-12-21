@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Comment from './Comment.jsx';
 import axios from 'axios';
 
+import Comment from './Comment.jsx';
+import InputBar from './InputBar.jsx';
 
 
 class App extends React.Component{
@@ -10,38 +11,78 @@ class App extends React.Component{
         super(props);
         this.state={
             commentsList: [],
-            project_id: ''
+            newComment: '',
+            currentProject_id: 2
         }
+
     }
 
     componentDidMount(){
-       
-        axios.get('/Comments')
+        const self = this;
+        axios.get('/Comments/:ID',{
+            params:{
+                ID: self.state.currentProject_id
+            }
+        })
         .then(function (response) {
-          console.log('RESPONSE:',response);
+          self.setState({
+              commentsList: response.data
+          })
+          console.log(self.state);
           })
         .catch(function (error) {
           console.log(error);
         });   
     }
-    
 
+    onChange(e){
+        console.log(this.state);
+        e.preventDefault();
+        this.setState({
+            newComment: e.target.value
+        })
+    }
+    
+    onClick(e){
+        e.preventDefault();
+        const self = this;
+
+        axios.post('/Comments', {
+            newComment: this.state.newComment,
+            currentProject_id: this.state.currentProject_id
+        })
+        .then(function (response) {
+            console.log(response);
+            self.setState({
+                commentsList:response.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
 
     render(){
         return (
         <div>
             <div className="input">Input Bar:
-                <Comment commentsList={this.state.commentsList}/>
+                <InputBar onChange={this.onChange.bind(this)} onClick={this.onClick.bind(this)}/>
             </div>
 
-            <div className="ouput">Existing Comments </div>
+            <div className="ouput">Existing Comments
+                {this.state.commentsList.map( (item)=>{
+                    return <Comment commentObj={item}/>
+                })
+                }
+                
+             </div>
         </div>
         
         );
     }
 }
 
-ReactDOM.render( <App/>,document.getElementById('Comments'));
+ReactDOM.render( <App/>,document.getElementById('App'));
 
 export default App;

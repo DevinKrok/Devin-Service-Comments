@@ -13,11 +13,33 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.get('/Comments', (req, res) => {
+app.get('/Comments/:ID', (req, res) => {
+  console.log('HERE');
 
-        knex.select().from('comments_info')
-        .then( (rows)=>{res.send(rows)});
+  knex.where('project_id',req.query.ID).select().from('comments_info')
+  .then( (rows)=>{res.send(rows)})
+  .catch( (err)=>{console.log(err)});
         
+});
+
+app.post('/Comments', (req, res) => {
+
+  console.log('RECIEVED IN SERVER',req.body);
+  let currentProject_id = req.body.currentProject_id;
+  let newComment = req.body.newComment;
+
+  console.log('Pre-Knex');
+  knex('comments_info').insert({project_id:currentProject_id,username:'TestUser',comment:newComment})
+  .then( ()=>{
+    knex.where('project_id',currentProject_id).select().from('comments_info')
+    .then( (rows)=>{res.send(rows)})
+    .catch( (err)=>{console.log(err)});
+  })
+  .catch( (err)=>{console.log(err)})
+  console.log('Post-Knex');
+
+  
+  //[{project_id:currentProject_id},{userName: 'Devin Krok'},{comment:newComment}
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
