@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Comment from './Comment.jsx';
 import InputBar from './InputBar.jsx';
+import MoreCommentsButton from './MoreCommentsButton.jsx';
 
 
 class App extends React.Component{
@@ -12,7 +13,8 @@ class App extends React.Component{
         this.state={
             commentsList: [],
             newComment: '',
-            currentProject_id: 2
+            currentProject_id: 2,
+            commentsButtonClicked:false
         }
 
     }
@@ -62,8 +64,25 @@ class App extends React.Component{
         });
     }
 
+    buttonClick(e){
+        e.preventDefault();
+        this.setState({
+            commentsButtonClicked: !this.state.commentsButtonClicked
+        })
+    }
+
+
+
 
     render(){
+
+
+    if(this.state.commentsButtonClicked){
+        const CommentsShown = this.state.commentsList.length; //all comments shown 
+    } else {
+        const CommentsShown = Math.floor(this.state.commentsList.length*(0.4)); //40% of comments shown
+    }
+
         return (
         <div>
             <div className="input">Input Bar:
@@ -71,11 +90,17 @@ class App extends React.Component{
             </div>
 
             <div className="ouput">Existing Comments
-                {this.state.commentsList.map( (item)=>{
-                    return <Comment commentObj={item}/>
-                })
-                }
-                
+                { (this.state.commentsButtonClicked)?
+                    this.state.commentsList.slice(0,this.state.commentsList.length).map( (item)=>{
+                        return <Comment commentObj={item}/>
+                    }):
+                    this.state.commentsList.slice(0,Math.floor(this.state.commentsList.length*(0.4))).map( (item)=>{
+                        return <Comment commentObj={item}/>
+                    })
+                }                
+             </div>
+             <div className="button">
+                    <MoreCommentsButton commentsButtonClicked={this.state.commentsButtonClicked} buttonClick={this.buttonClick.bind(this)}/>
              </div>
         </div>
         
