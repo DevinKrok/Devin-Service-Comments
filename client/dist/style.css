@@ -1,0 +1,31 @@
+
+/* Input Comments Bar*/
+textarea {
+    float: left
+}
+
+/* Style Comments Bar*/
+
+div.comment {
+    width: 50%;
+    margin-left: 100px;
+    display: block;
+    border-style: solid
+}
+
+button.commentsButton {
+    margin-left: 100px;
+}
+
+/* Style Content within a Comment*/
+
+div.username{
+    font-weight:bold;
+    font-size:1em 
+}
+
+
+div.timestamp{
+    font-weight:normal;
+    font-size:0.8em 
+}

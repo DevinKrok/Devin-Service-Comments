@@ -85,11 +85,11 @@ class App extends React.Component{
 
         return (
         <div>
-            <div className="input">Input Bar:
+            <div className="input">
                 <InputBar onChange={this.onChange.bind(this)} onClick={this.onClick.bind(this)}/>
             </div>
 
-            <div className="ouput">Existing Comments
+            <div className="ouput">Comments:
                 { (this.state.commentsButtonClicked)?
                     this.state.commentsList.slice(0,this.state.commentsList.length).map( (item)=>{
                         return <Comment commentObj={item}/>

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/DevinKrok/Devin-Service-Comments#readme",
   "dependencies": {
+    "@material-ui/core": "^3.7.1",
     "axios": "^0.18.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
