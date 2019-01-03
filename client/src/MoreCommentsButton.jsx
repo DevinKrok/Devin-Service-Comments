@@ -1,5 +1,9 @@
 import React from 'react';
 
+const styleCommentsButton = {
+    marginLeft: '100px'
+} 
+
 class MoreCommentsButton extends React.Component {
     constructor(props){
         super(props);
@@ -9,9 +13,9 @@ class MoreCommentsButton extends React.Component {
 
 
         if(!this.props.commentsButtonClicked){
-            return(<button className="commentsButton" onClick={this.props.buttonClick}>More Comments</button>);
+            return(<button className="commentsButton" onClick={this.props.buttonClick} style={styleCommentsButton}>More Comments</button>);
         } else {
-            return (<button classname="commentsButton" onClick={this.props.buttonClick}>Shrink Comments</button>);
+            return (<button className="commentsButton" onClick={this.props.buttonClick} style={styleCommentsButton}>Shrink Comments</button>);
         } 
     }
 }

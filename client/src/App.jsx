@@ -5,8 +5,7 @@ import axios from 'axios';
 import Comment from './Comment.jsx';
 import InputBar from './InputBar.jsx';
 import MoreCommentsButton from './MoreCommentsButton.jsx';
-
-
+   
 class App extends React.Component{
     constructor(props){
         super(props);
