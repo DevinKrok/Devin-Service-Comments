@@ -12,7 +12,7 @@ class App extends React.Component{
         this.state={
             commentsList: [],
             newComment: '',
-            currentProject_id: 2,
+            currentProject_id: this.props.id,
             commentsButtonClicked:false
         }
 
@@ -34,6 +34,27 @@ class App extends React.Component{
         .catch(function (error) {
           console.log(error);
         });   
+    }
+
+    componentDidUpdate(prevProp){
+        console.log('*****');
+        if(this.props.id !== prevProp.id ){
+            const self = this;
+            axios.get('/Comments/:ID',{
+                params:{
+                    ID: self.state.currentProject_id
+                }
+            })
+            .then(function (response) {
+            self.setState({
+                commentsList: response.data
+            })
+            console.log(self.state);
+            })
+            .catch(function (error) {
+            console.log(error);
+            }); 
+        }  
     }
 
     onChange(e){
