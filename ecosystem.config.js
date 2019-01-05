@@ -3,6 +3,9 @@ module.exports = {
     name: 'Comments-Service',
     script: './server.js'
   }],
+  env_production: {
+    NODE_ENV: 'production'
+  },
   deploy: {
     production: {
       user: 'ubuntu',
@@ -11,7 +14,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:DevinKrok/Devin-Service-Comments.git',
       path: '/home/ubuntu/frontendCapstoneServiceComments',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js --env production'
     }
   }
 }
