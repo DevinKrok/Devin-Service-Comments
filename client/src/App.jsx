@@ -24,7 +24,7 @@ class Comments extends React.Component{
 
     componentDidMount(){
         const self = this;
-        axios.get('/Comments/:ID',{
+        axios.get('/Comments',{
             params:{
                 ID: self.state.currentProject_id
             }

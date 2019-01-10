@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.get('/Comments/:ID', (req, res) => {
-  console.log('HERE');
+app.get('/Comments', (req, res) => {
+  console.log(req.query,req.params);
 
   knex.where('project_id',req.query.ID).select().from('comments_info').orderBy('times','desc')
   .then( (rows)=>{res.send(rows)})
