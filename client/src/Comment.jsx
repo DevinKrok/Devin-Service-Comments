@@ -1,25 +1,36 @@
 import React from 'react';
 
 const commentStyle = {
+    cursor: 'pointer',
     width: '50%',
     marginLeft: '80px',
     paddingTop: '5px',
     paddingBottom: '5px',
     display: 'block',
-    borderTopStyle: 'groove',
+    borderStyle: 'solid',
+    margin: '10px 10px',
+    borderRadius: '2%',
+    boxShadow:'5px 5px',
+    backgroundColor: '#D100FF',
+    // borderTopStyle: 'groove',
 }
 
 const styleUsername = {
+    font: 'bold 13px arial, helvetica, sans-serif',
+    marginLeft: '10px',
     fontWeight:'bold',
     fontSize:'1em',
     lineHeight: '25px'
 } 
 
 const styleMessage = {
+    font: 'bold 13px arial, helvetica, sans-serif',
+    marginLeft: '15px',
     textIndent: '10px'
 }
 
 const styleTimestamp = {
+    font: 'bold 13px arial, helvetica, sans-serif',
     fontWeight: 'normal',
     fontSize: '0.5em',
     lineHeight: '25px',

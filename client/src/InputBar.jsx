@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const buttonStyle = {
-    display: 'block'
+    display: 'block',
+    font: 'bold 13px arial, helvetica, sans-serif',
+    padding: '10px 10px',
+    borderRadius: '10%',
+    backgroundColor: '#FFADFF',
 }
 
 class InputBar extends React.Component {

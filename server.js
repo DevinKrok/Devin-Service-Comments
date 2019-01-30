@@ -8,7 +8,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 // const db = require('./db/index.js');
 const knex = require('./db/knex.js');
-const Promise = require("bluebird");
+// const Promise = require("bluebird");
 
 app.use(express.static('./client/dist'));
 app.use(cors());
@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 
 app.get('/Comments', (req, res) => {
   console.log(req.query,req.params);
+  console.log(req.params.id)
 
   knex.where('project_id',req.query.ID).select().from('comments_info').orderBy('times','desc')
   .then( (rows)=>{res.send(rows)})

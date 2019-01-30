@@ -45,7 +45,7 @@ class Comments extends React.Component{
         console.log(this.props.id);
         if(this.props.id !== prevProps.id ){
             const self = this;
-            axios.get('/Comments/:ID',{
+            axios.get('/Comments',{
                 params:{
                     ID: self.props.id
                 }
